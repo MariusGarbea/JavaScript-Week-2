@@ -1,19 +1,21 @@
-function processData(my_string) {
-    try{
+function processData(my_height) {
+    try {
+        if(isNaN(my_height)){
+            throw new Error("notANumberError");
+        }
+        if(my_height > 10){
+            throw new Error("hugeHeightError");
+        }
+        if(my_height < 4){
+            throw new Error("tinyHeightError");
+        }
+        console.log(my_height);
         
-        my_string = my_string.split('').reverse().join('');
-        console.log(`Reversed string is : ${my_string}`);
-
-    } catch (err){
-
-       console.log(`Error : ${err.message}`);
-
-    } finally {
-
-        console.log(`Type of my_string is : ${typeof my_string}`);
-
+    } catch (Error) {
+        console.log(Error.message);
     }
 } 
+
 
 process.stdin.resume();
 process.stdin.setEncoding("ascii");
@@ -23,6 +25,5 @@ process.stdin.on("data", function (input) {
 });
 
 process.stdin.on("end", function () {
-   processData(eval(_input));
+   processData(_input);
 });
-
